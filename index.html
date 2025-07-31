@@ -132,61 +132,7 @@
     
   </style>
 
-    // Sequential, slow popup generator
-    let popping = false;
-    function showPopupsSequentially(lines) {
-      if(popping) return;
-      popping = true;
-      let i = 0;
-      function next() {
-        if (i >= lines.length) { popping = false; return; }
-        createLovePopup(lines[i]);
-        i++;
-        setTimeout(next, 2600); // Must be < animation duration, for overlap fade
-      }
-      next();
-    }
-
-    // Popup function
-    function createLovePopup(line) {
-      const popup = document.createElement("div");
-      popup.className = "love-popup";
-      popup.textContent = line;
-      popup.style.setProperty("--popup-font", randomItem(popupFonts));
-      popup.style.color = `hsl(${270 + Math.random() * 30}, 77%, 53%)`;
-      const vw = window.innerWidth, vh = window.innerHeight;
-      const left = Math.random() * (vw - 240);
-      const top = Math.random() * (vh - 70);
-      popup.style.left = left + "px";
-      popup.style.top = top + "px";
-      document.body.appendChild(popup);
-      setTimeout(() => popup.remove(), 6000); // Match animation duration
-    }
-
-    // Emoji blast
-    function emojiBlast(count = 72) {
-      const emojis = ['❤️','💓','💖','💋','💜','💞','😍','😘','💗','🧡','💕','💝','💘','💟','💚','💙','💛'];
-      const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-      for (let i = 0; i < count; i++) {
-        setTimeout(() => {
-          const e = document.createElement('div');
-          e.className = 'emoji-blast';
-          e.textContent = randomItem(emojis);
-          e.style.left = cx + 'px';
-          e.style.top = cy + 'px';
-          // Random direction and distance
-          const angle = Math.random() * 2 * Math.PI;
-          const radius = 80 + Math.random() * 430;
-          const bx = Math.cos(angle) * radius;
-          const by = Math.sin(angle) * radius;
-          e.style.setProperty('--bx', bx + 'px');
-          e.style.setProperty('--by', by + 'px');
-          e.style.setProperty('--rot', Math.floor(Math.random() * 360 - 180) + 'deg');
-          document.body.appendChild(e);
-          setTimeout(() => e.remove(), 1800);
-        }, Math.random() * 210);
-      }
-    }
+    
 
    </head>
 <body>
